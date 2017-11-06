@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="ja-jp">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IE8対応の画像アップローダを実装</title>
+<meta name="description" content="ブロックチェーンやRailsなど実践の記録">
+<meta name="generator" content="Hugo 0.30.2" />
+<meta property="og:title" content="IE8対応の画像アップローダを実装" />
+<meta property="og:description" content="最近インターンでは企業向けのWebアプリを実装していて、IE8対応の縛りプレイを受けています。その実装過程で味わった苦しみを忘れないよう、こ" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://blog.gacktomo.com/2017/11/ie8%E5%AF%BE%E5%BF%9C%E3%81%AE%E7%94%BB%E5%83%8F%E3%82%A2%E3%83%83%E3%83%97%E3%83%AD%E3%83%BC%E3%83%80%E3%82%92%E5%AE%9F%E8%A3%85/" />
+
+
+
+<meta property="article:published_time" content="2017-11-01T00:47:52&#43;00:00"/>
+
+<meta property="article:modified_time" content="2017-11-01T00:47:52&#43;00:00"/>
+
+
+
+
+
+
+
+
+
+
+
+<link rel="dns-prefetch" href="//fonts.googleapis.com" />
+<link rel="dns-prefetch" href="//fonts.gstatic.com" />
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400italic,700" type="text/css" media="all" />
+<link rel="stylesheet" href="http://blog.gacktomo.com/css/style.css" type="text/css" media="all" />
+<script type="text/javascript" src="http://blog.gacktomo.com/js/scripts.js"></script>
+<link rel="shortcut icon" href="http://blog.gacktomo.com/favicon.ico">
+
+</head>
+<body class="body body-right-sidebar mobile" itemscope="itemscope" itemtype="http://schema.org/WebPage">
+	<div class="container container-outer">
+		<header class="header" itemscope="itemscope" itemtype="http://schema.org/WPHeader">
+			<div class="container container-inner clearfix">
+				<div class="logo" role="banner" itemscope="itemscope" itemtype="http://schema.org/Brand">
+					<a class="logo__link" href="http://blog.gacktomo.com/" title="まつをエンジニアブログ" rel="home">
+						<h1 class="logo__title">まつをエンジニアブログ</h1>
+						<h2 class="logo__tagline">ブロックチェーンとかやります</h2>
+					</a>
+				</div>
+			</div>
+			<hr class="divider">
+		</header>
+		<div class="wrapper clearfix">
+
+<main class="main-content content" role="main" itemprop="mainContentOfPage">
+	<article class="post">
+		<header class="post__header clearfix">
+			<h1 class="post__title">IE8対応の画像アップローダを実装</h1>
+			<p class="post__meta meta">
+				<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
+				<time class="post__meta-date" datetime="2017-11-01T00:47:52">November 01, 2017</time>
+			</p>
+		</header>
+		<div class="post__content clearfix">
+			<figure class="post__thumbnail">
+				<img src="https://business-icon.com/material/071-business-icon.jpg" alt="IE8対応の画像アップローダを実装">
+			</figure>
+			<p></div>
+最近インターンでは企業向けのWebアプリを実装していて、IE8対応の縛りプレイを受けています。その実装過程で味わった苦しみを忘れないよう、ここに記録しておきます。今回実装したのは画像のアップロード機能です。
+</br>
+</br>
+<!--more -->
+<h4>要件</h4>
+<p>以下の2点を満たす必要がありました。</p>
+<p>・アップロード前にサムネイルを確認できること</p>
+<p>・画像をクロッピング（切り抜き）できること</p>
+<p> </p>
+<h4>問題点</h4>
+<p><strong>１．FILE APIが使えない</strong></p>
+<p>ローカルファイルを参照できないのでアップロード前にサムネイルを確認することができません。ならば一旦サーバに送ってBase64でレスポンスを返してもらおう。。。ajaxで画像を送受信だ！</p>
+<p> </p>
+<p><strong>２．FormDataが使えない</strong></p>
+<p> ajaxも使えないじゃん！</p>
+<p>どうやらiframeを使って同じことができるらしい&hellip;？</p>
+<p> </p>
+<h4>解決策 </h4>
+<p>まさしくこれでした。</p>
+<p><iframe class="embed-card embed-blogcard" style="display: block; width: 100%; height: 190px; max-width: 500px; margin: 10px 0px;" title="IFRAMEを使用したAJAX風画像アップローダ（サムネイル表示付） - ねぎぶログ" src="https://hatenablog-parts.com/embed?url=http%3A%2F%2Fnegiblog.hatenablog.com%2Fentry%2F2014%2F11%2F28%2Fiframe%2525e3%252582%252592%2525e4%2525bd%2525bf%2525e7%252594%2525a8%2525e3%252581%252597%2525e3%252581%25259fajax%2525e9%2525a2%2525a8%2525e7%252594%2525bb%2525e5%252583%25258f%2525e3%252582%2525a2%2525e3%252583%252583%2525e3%252583%252597%2525e3%252583%2525ad%2525e3%252583" frameborder="0" scrolling="no"></iframe><cite class="hatena-citation"></cite></p>
+<p><iframe class="embed-card embed-webcard" style="display: block; width: 100%; height: 155px; max-width: 500px; margin: 10px 0px;" title="IE8 で form のデータを非同期で送信して json のレスポンスを受け取る - Qiita" src="https://hatenablog-parts.com/embed?url=https%3A%2F%2Fqiita.com%2Fopengl-8080%2Fitems%2F972b5568b739f06773e7" frameborder="0" scrolling="no"></iframe></p>
+<p> </p>
+<p>画像を送るformのtargetに隠しiframeを設定することで、レスポンスが隠しiframeに返ってきてajaxっぽいことができるというカラクリでした。ほんでサムネイルは隠してたiframeの中に表示すればよし。</p>
+<p> </p>
+<p>画像をクロッピングに関しては icropperというJavaScriptライブラリがありました。IE8対応してるライブラリが少なくて見つけるのに時間かかった&hellip;。</p>
+<p> </p>
+<p><a href="https://github.com/supnate/icropper">GitHub - supnate/icropper: Javascript Image Cropper</a></p>
+<p> </p>
+<p>モダンブラウザなら <a href="https://github.com/fengyuanchen/cropperjs">cropper.js</a>というイケてるライブラリが使える。いいなぁ。</p>
+<p> </p>
+<h4> 地味に詰まったところ</h4>
+<p>formタグに <span style="color: #4d4d4d; font-family: Monaco, Consolas, 'Courier New', Courier, monospace, sans-serif; font-size: 13.5px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: left; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgba(0, 0, 0, 0.03); text-decoration-style: initial; text-decoration-color: initial; display: inline !important; float: none;">enctype=&ldquo;multipart/form-data&rdquo;</span> を付けないとファイルが送信されない。送られてきたパラメータ見たらファイル名の文字列しか入ってなくて最初困惑した。</p>
+<p> </p>
+<h4>なんとかなった</h4>
+<p>普段はモダンなブラウザ向けにコードを書くことが多いので意識したことがなかったのですが、下位互換性を保つのは非常に骨が折れますねえ。世界中のエンジニアたちが”IEは早く滅びろ”と口を揃えて言っている意味が分かりました。</p>
+<p> </p>
+<p>ほんとIE滅びてくれ〜〜〜っ</p></p>
+
+		</div>
+		
+<div class="post__tags tags clearfix">
+	<svg class="icon icon-tag" width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><path d="m4.73135 3.3795002q0-.5597-.39604-.9557-.39604-.3961-.95577-.3961-.55974 0-.95578.3961-.39604.396-.39604.9557 0 .5598.39604.9558.39604.3961.95578.3961.55973 0 .95577-.3961.39604-.396.39604-.9558zm11.26865 6.0832q0 .5596998-.39076.9504998l-5.18548 5.196q-.41188.3908-.9610504.3908-.55974 0-.9505-.3908l-7.5511496-7.5616998q-.40132-.3907-.68119-1.0666-.27987-.6759-.27987-1.2357v-4.3934q0-.54920004.40132-.95050004.40132-.4013.9505-.4013h4.39339q.55974 0 1.23565.2799.67591.2798 1.07723.6812l7.55115 7.54060004q.39076.4118.39076.961z"/></svg>
+	<ul class="tags__list">
+		<li class="tags__item"><a class="tags__link" href="http://blog.gacktomo.com/tags/technology/" rel="tag">TECHNOLOGY</a></li>
+	</ul>
+</div>
+
+	</article>
+	
+<div class="authorbox clearfix">
+	<div class="authorbox__header">
+		<span class="authorbox__name">About matsuo</span>
+	</div>
+</div>
+	
+<nav class="post-nav row clearfix" itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement">
+	<div class="post-nav__item post-nav__item--prev col-1-2">
+		<a class="post-nav__link" href="http://blog.gacktomo.com/2017/10/%E3%83%AA%E3%82%A2%E3%83%AB%E3%82%BF%E3%82%A4%E3%83%A0%E3%81%AB%E7%A8%BC%E3%81%8E%E3%82%92%E5%8F%AF%E8%A6%96%E5%8C%96%E3%81%99%E3%82%8B%E3%82%A2%E3%83%97%E3%83%AA%E3%82%92%E4%BD%9C%E3%81%A3%E3%81%9F/" rel="prev"><span class="post-nav__caption">«Previous</span><p class="post-nav__post-title">リアルタイムに稼ぎを可視化するアプリを作った</p></a>
+	</div>
+	<div class="post-nav__item post-nav__item--next col-1-2">
+		<a class="post-nav__link" href="http://blog.gacktomo.com/2017/11/%E5%87%BA%E9%81%85%E3%82%8C%E6%84%9Fethereum%E3%81%AE%E3%83%9E%E3%82%A4%E3%83%8B%E3%83%B3%E3%82%B0%E3%81%AF%E7%A8%BC%E3%81%92%E3%82%8B%E3%81%AE%E3%81%8B/" rel="next"><span class="post-nav__caption">Next»</span><p class="post-nav__post-title">【出遅れ感】Ethereumのマイニングは稼げるのか？！</p></a>
+	</div>
+</nav>
+
+	
+</main>
+
+<aside class="sidebar" itemscope="itemscope" itemtype="http://schema.org/WPSideBar">
+	
+<div class="widget-search widget">
+	<form class="widget-search__form" role="search" method="get" action="//google.com/search">
+		<label>
+			<span class="screen-reader-text">Search for:</span>
+			<input class="widget-search__field" type="search" placeholder="SEARCH..." value="" name="q">
+		</label>
+		<input class="widget-search__submit" type="submit" value="Search">
+		<input type="hidden" name="sitesearch" value="http://blog.gacktomo.com/" />
+	</form>
+</div>
+	
+<div class="widget-recent widget">
+	<h4 class="widget__title">Recent Posts</h4>
+	<div class="widget__content">
+		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="http://blog.gacktomo.com/2017/11/nem%E3%83%8F%E3%83%BC%E3%83%99%E3%82%B9%E3%83%88%E3%82%84%E3%81%A3%E3%81%A6%E3%81%BF%E3%81%9F/">NEMハーベストやってみた</a></li>
+			<li class="widget__item"><a class="widget__link" href="http://blog.gacktomo.com/2017/11/storj%E3%81%A7%E3%83%87%E3%82%A3%E3%82%B9%E3%82%AF%E8%B2%B8%E3%81%97%E5%87%BA%E3%81%97%E3%82%84%E3%81%A3%E3%81%A6%E3%81%BF%E3%81%9F/">Storjでディスク貸し出しやってみた</a></li>
+			<li class="widget__item"><a class="widget__link" href="http://blog.gacktomo.com/2017/11/ethereum%E3%83%9B%E3%83%AF%E3%82%A4%E3%83%88%E3%83%9A%E3%83%BC%E3%83%91%E3%83%BC%E3%82%92%E3%81%96%E3%81%A3%E3%81%8F%E3%82%8A%E8%A7%A3%E8%AA%AC/">Ethereumホワイトペーパーをざっくり解説</a></li>
+			<li class="widget__item"><a class="widget__link" href="http://blog.gacktomo.com/2017/11/%E5%87%BA%E9%81%85%E3%82%8C%E6%84%9Fethereum%E3%81%AE%E3%83%9E%E3%82%A4%E3%83%8B%E3%83%B3%E3%82%B0%E3%81%AF%E7%A8%BC%E3%81%92%E3%82%8B%E3%81%AE%E3%81%8B/">【出遅れ感】Ethereumのマイニングは稼げるのか？！</a></li>
+			<li class="widget__item"><a class="widget__link" href="http://blog.gacktomo.com/2017/11/ie8%E5%AF%BE%E5%BF%9C%E3%81%AE%E7%94%BB%E5%83%8F%E3%82%A2%E3%83%83%E3%83%97%E3%83%AD%E3%83%BC%E3%83%80%E3%82%92%E5%AE%9F%E8%A3%85/">IE8対応の画像アップローダを実装</a></li>
+		</ul>
+	</div>
+</div>
+
+	
+	
+<div class="widget-social widget">
+	<h4 class="widget-social__title widget__title">Social</h4>
+	<div class="widget-social__content widget__content">
+		<div class="widget-social__item widget__item">
+			<a class="widget-social__link widget__link btn" title="Twitter" rel="noopener noreferrer" href="https://twitter.com/gakutomo" target="_blank">
+				<svg class="widget-social__link-icon icon-twitter" viewBox="0 0 384 312" width="24" height="24" xmlns="http://www.w3.org/2000/svg" fill="#fff"><path d="m384 36.9c-14.1 6.3-29.3 10.5-45.2 12.4 16.3-9.7 28.8-25.2 34.6-43.6-15.2 9-32.1 15.6-50 19.1-14.4-15.2-34.9-24.8-57.5-24.8-43.5 0-78.8 35.3-78.8 78.8 0 6.2.7 12.2 2 17.9-65.5-3.3-123.5-34.6-162.4-82.3-6.7 11.6-10.6 25.2-10.6 39.6 0 27.3 13.9 51.4 35 65.6-12.9-.4-25.1-4-35.7-9.9v1c0 38.2 27.2 70 63.2 77.2-6.6 1.8-13.6 2.8-20.8 2.8-5.1 0-10-.5-14.8-1.4 10 31.3 39.1 54.1 73.6 54.7-27 21.1-60.9 33.7-97.8 33.7-6.4 0-12.6-.4-18.8-1.1 34.9 22.4 76.3 35.4 120.8 35.4 144.9 0 224.1-120 224.1-224.1 0-3.4-.1-6.8-.2-10.2 15.4-11.1 28.7-25 39.3-40.8z"/></svg>
+				<span>Twitter</span>
+			</a>
+		</div>
+		<div class="widget-social__item widget__item">
+			<a class="widget-social__link widget__link btn" title="GitHub" rel="noopener noreferrer" href="https://github.com/gacktomo" target="_blank">
+				<svg class="widget-social__link-icon icon-github" viewBox="0 0 384 374" width="24" height="24" xmlns="http://www.w3.org/2000/svg" fill="#fff"><path d="m192 0c-106.1 0-192 85.8-192 191.7 0 84.7 55 156.6 131.3 181.9 9.6 1.8 13.1-4.2 13.1-9.2 0-4.6-.2-16.6-.3-32.6-53.4 11.6-64.7-25.7-64.7-25.7-8.7-22.1-21.3-28-21.3-28-17.4-11.9 1.3-11.6 1.3-11.6 19.3 1.4 29.4 19.8 29.4 19.8 17.1 29.3 44.9 20.8 55.9 15.9 1.7-12.4 6.7-20.8 12.2-25.6-42.6-4.8-87.5-21.3-87.5-94.8 0-20.9 7.5-38 19.8-51.4-2-4.9-8.6-24.3 1.9-50.7 0 0 16.1-5.2 52.8 19.7 15.3-4.2 31.7-6.4 48.1-6.5 16.3.1 32.7 2.2 48.1 6.5 36.7-24.8 52.8-19.7 52.8-19.7 10.5 26.4 3.9 45.9 1.9 50.7 12.3 13.4 19.7 30.5 19.7 51.4 0 73.7-44.9 89.9-87.7 94.6 6.9 5.9 13 17.6 13 35.5 0 25.6-.2 46.3-.2 52.6 0 5.1 3.5 11.1 13.2 9.2 76.2-25.5 131.2-97.3 131.2-182 0-105.9-86-191.7-192-191.7z"/></svg>
+				<span>GitHub</span>
+			</a>
+		</div>
+	</div>
+</div>
+
+	
+<div class="widget-taglist widget">
+	<h4 class="widget__title">Tags</h4>
+	<div class="widget__content">
+		<a class="widget__link widget__link--taglist" href="http://blog.gacktomo.com/tags/slowtube" title="slowtube">slowtube</a>
+		<a class="widget__link widget__link--taglist" href="http://blog.gacktomo.com/tags/technology" title="technology">technology</a>
+	</div>
+</div>
+</aside>
+
+	</div>
+		<footer class="footer" itemscope="itemscope" itemtype="http://schema.org/WPFooter">
+			<div class="container container-inner">
+				<p class="footer__copyright">&copy; 2017 まつをエンジニアブログ. <span class="footer__copyright-credits">Generated with <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> and <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad theme</a>.</span></p>
+			</div>
+		</footer>
+	</div>
+
+<script>
+	var navigation = responsiveNav(".menu", {
+		navClass: "menu--collapse",
+	});
+</script>
+</body>
+</html>
