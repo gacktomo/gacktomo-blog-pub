@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Slowtube on まつをエンジニアブログ</title>
-    <link>http://blog.gacktomo.com/tags/slowtube/</link>
+    <link>https://blog.gacktomo.com/tags/slowtube/</link>
     <description>Recent content in Slowtube on まつをエンジニアブログ</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-jp</language>
     <lastBuildDate>Sat, 23 Sep 2017 22:34:19 +0000</lastBuildDate>
     
-	<atom:link href="http://blog.gacktomo.com/tags/slowtube/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://blog.gacktomo.com/tags/slowtube/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>SlowTube ver1.1 アップデートのお知らせ</title>
-      <link>http://blog.gacktomo.com/2017/09/slowtube-ver1.1-%E3%82%A2%E3%83%83%E3%83%97%E3%83%87%E3%83%BC%E3%83%88%E3%81%AE%E3%81%8A%E7%9F%A5%E3%82%89%E3%81%9B/</link>
+      <link>https://blog.gacktomo.com/2017/09/slowtube-ver1.1-%E3%82%A2%E3%83%83%E3%83%97%E3%83%87%E3%83%BC%E3%83%88%E3%81%AE%E3%81%8A%E7%9F%A5%E3%82%89%E3%81%9B/</link>
       <pubDate>Sat, 23 Sep 2017 22:34:19 +0000</pubDate>
       
-      <guid>http://blog.gacktomo.com/2017/09/slowtube-ver1.1-%E3%82%A2%E3%83%83%E3%83%97%E3%83%87%E3%83%BC%E3%83%88%E3%81%AE%E3%81%8A%E7%9F%A5%E3%82%89%E3%81%9B/</guid>
+      <guid>https://blog.gacktomo.com/2017/09/slowtube-ver1.1-%E3%82%A2%E3%83%83%E3%83%97%E3%83%87%E3%83%BC%E3%83%88%E3%81%AE%E3%81%8A%E7%9F%A5%E3%82%89%E3%81%9B/</guid>
       <description>通信制限でもYoutubeを視聴できるWebアプリケーション「SlowTube」のアップデート内容についてお知らせしたいと思います。 通信制限</description>
     </item>
     
