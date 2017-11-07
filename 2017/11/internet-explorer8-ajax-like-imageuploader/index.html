@@ -3,19 +3,19 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>【出遅れ感】Ethereumのマイニングは稼げるのか？！</title>
+<title>IE8対応の画像アップローダを実装</title>
 <meta name="description" content="ブロックチェーンやRailsなど実践の記録">
 <meta name="generator" content="Hugo 0.30.2" />
-<meta property="og:title" content="【出遅れ感】Ethereumのマイニングは稼げるのか？！" />
-<meta property="og:description" content="今更ですがEthereumのホワイトペーパーを読みました。いやぁ、すごい。本当にこれは世界を変える技術だと思います。 そしてEthereumは" />
+<meta property="og:title" content="IE8対応の画像アップローダを実装" />
+<meta property="og:description" content="最近インターンでは企業向けのWebアプリを実装していて、IE8対応の縛りプレイを受けています。その実装過程で味わった苦しみを忘れないよう、こ" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://blog.gacktomo.com/about/ethereum-mining-monetize/" />
+<meta property="og:url" content="https://blog.gacktomo.com/2017/11/internet-explorer8-ajax-like-imageuploader/" />
 
 
 
-<meta property="article:published_time" content="2017-11-01T01:47:38&#43;00:00"/>
+<meta property="article:published_time" content="2017-11-01T00:47:52&#43;00:00"/>
 
-<meta property="article:modified_time" content="2017-11-01T01:47:38&#43;00:00"/>
+<meta property="article:modified_time" content="2017-11-01T00:47:52&#43;00:00"/>
 
 
 
@@ -61,20 +61,54 @@ ga('send', 'pageview');
 <main class="main-content content" role="main" itemprop="mainContentOfPage">
 	<article class="post">
 		<header class="post__header clearfix">
-			<h1 class="post__title">【出遅れ感】Ethereumのマイニングは稼げるのか？！</h1>
+			<h1 class="post__title">IE8対応の画像アップローダを実装</h1>
 			<p class="post__meta meta">
 				<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
-				<time class="post__meta-date" datetime="2017-11-01T01:47:38">November 01, 2017</time>
+				<time class="post__meta-date" datetime="2017-11-01T00:47:52">November 01, 2017</time>
 			</p>
 		</header>
 		<div class="post__content clearfix">
-			<p><div style="text-align: center;">
-<a href="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQn_bEDgLwi98EATLIIULNVD3NkyiYg1dYT0jr58OfrzhmDUtrWg" class="http-image" target="_blank"><img class="http-image" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQn_bEDgLwi98EATLIIULNVD3NkyiYg1dYT0jr58OfrzhmDUtrWg" alt="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQn_bEDgLwi98EATLIIULNVD3NkyiYg1dYT0jr58OfrzhmDUtrWg"/></a>
- 
-</div>
-今更ですがEthereumのホワイトペーパーを読みました。いやぁ、すごい。本当にこれは世界を変える技術だと思います。
-そしてEthereumはASICみたいな専用ハードでマイニングできなかったり、計算資源弱者にも報酬が行くようなアルゴリズムになっているそうです。これはもしかして自分でもできるかも。。。？？
-ということで、出遅れている感が否めないですがマイニングを始めてみました！果たして稼げるのか。。。？？ </p>
+			<figure class="post__thumbnail">
+				<img src="https://business-icon.com/material/071-business-icon.jpg" alt="IE8対応の画像アップローダを実装">
+			</figure>
+			<p></div>
+最近インターンでは企業向けのWebアプリを実装していて、IE8対応の縛りプレイを受けています。その実装過程で味わった苦しみを忘れないよう、ここに記録しておきます。今回実装したのは画像のアップロード機能です。
+</br>
+</br>
+<!--more -->
+<h4>要件</h4>
+<p>以下の2点を満たす必要がありました。</p>
+<p>・アップロード前にサムネイルを確認できること</p>
+<p>・画像をクロッピング（切り抜き）できること</p>
+<p> </p>
+<h4>問題点</h4>
+<p><strong>１．FILE APIが使えない</strong></p>
+<p>ローカルファイルを参照できないのでアップロード前にサムネイルを確認することができません。ならば一旦サーバに送ってBase64でレスポンスを返してもらおう。。。ajaxで画像を送受信だ！</p>
+<p> </p>
+<p><strong>２．FormDataが使えない</strong></p>
+<p> ajaxも使えないじゃん！</p>
+<p>どうやらiframeを使って同じことができるらしい&hellip;？</p>
+<p> </p>
+<h4>解決策 </h4>
+<p>まさしくこれでした。</p>
+<p><iframe class="embed-card embed-blogcard" style="display: block; width: 100%; height: 190px; max-width: 500px; margin: 10px 0px;" title="IFRAMEを使用したAJAX風画像アップローダ（サムネイル表示付） - ねぎぶログ" src="https://hatenablog-parts.com/embed?url=http%3A%2F%2Fnegiblog.hatenablog.com%2Fentry%2F2014%2F11%2F28%2Fiframe%2525e3%252582%252592%2525e4%2525bd%2525bf%2525e7%252594%2525a8%2525e3%252581%252597%2525e3%252581%25259fajax%2525e9%2525a2%2525a8%2525e7%252594%2525bb%2525e5%252583%25258f%2525e3%252582%2525a2%2525e3%252583%252583%2525e3%252583%252597%2525e3%252583%2525ad%2525e3%252583" frameborder="0" scrolling="no"></iframe><cite class="hatena-citation"></cite></p>
+<p><iframe class="embed-card embed-webcard" style="display: block; width: 100%; height: 155px; max-width: 500px; margin: 10px 0px;" title="IE8 で form のデータを非同期で送信して json のレスポンスを受け取る - Qiita" src="https://hatenablog-parts.com/embed?url=https%3A%2F%2Fqiita.com%2Fopengl-8080%2Fitems%2F972b5568b739f06773e7" frameborder="0" scrolling="no"></iframe></p>
+<p> </p>
+<p>画像を送るformのtargetに隠しiframeを設定することで、レスポンスが隠しiframeに返ってきてajaxっぽいことができるというカラクリでした。ほんでサムネイルは隠してたiframeの中に表示すればよし。</p>
+<p> </p>
+<p>画像をクロッピングに関しては icropperというJavaScriptライブラリがありました。IE8対応してるライブラリが少なくて見つけるのに時間かかった&hellip;。</p>
+<p> </p>
+<p><a href="https://github.com/supnate/icropper">GitHub - supnate/icropper: Javascript Image Cropper</a></p>
+<p> </p>
+<p>モダンブラウザなら <a href="https://github.com/fengyuanchen/cropperjs">cropper.js</a>というイケてるライブラリが使える。いいなぁ。</p>
+<p> </p>
+<h4> 地味に詰まったところ</h4>
+<p>formタグに <span style="color: #4d4d4d; font-family: Monaco, Consolas, 'Courier New', Courier, monospace, sans-serif; font-size: 13.5px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: left; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgba(0, 0, 0, 0.03); text-decoration-style: initial; text-decoration-color: initial; display: inline !important; float: none;">enctype=&ldquo;multipart/form-data&rdquo;</span> を付けないとファイルが送信されない。送られてきたパラメータ見たらファイル名の文字列しか入ってなくて最初困惑した。</p>
+<p> </p>
+<h4>なんとかなった</h4>
+<p>普段はモダンなブラウザ向けにコードを書くことが多いので意識したことがなかったのですが、下位互換性を保つのは非常に骨が折れますねえ。世界中のエンジニアたちが”IEは早く滅びろ”と口を揃えて言っている意味が分かりました。</p>
+<p> </p>
+<p>ほんとIE滅びてくれ〜〜〜っ</p></p>
 
 			<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 <ins class="adsbygoogle"
@@ -103,6 +137,14 @@ ga('send', 'pageview');
 	</div>
 </div>
 	
+<nav class="post-nav row clearfix" itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement">
+	<div class="post-nav__item post-nav__item--prev col-1-2">
+		<a class="post-nav__link" href="https://blog.gacktomo.com/2017/10/realtime-income-visualize/" rel="prev"><span class="post-nav__caption">«Previous</span><p class="post-nav__post-title">リアルタイムに稼ぎを可視化するアプリを作った</p></a>
+	</div>
+	<div class="post-nav__item post-nav__item--next col-1-2">
+		<a class="post-nav__link" href="https://blog.gacktomo.com/2017/11/ethereum-mining-monetize/" rel="next"><span class="post-nav__caption">Next»</span><p class="post-nav__post-title">【出遅れ感】Ethereumのマイニングは稼げるのか？！</p></a>
+	</div>
+</nav>
 
 	
 </main>

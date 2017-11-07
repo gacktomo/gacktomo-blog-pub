@@ -3,19 +3,19 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>【出遅れ感】Ethereumのマイニングは稼げるのか？！</title>
+<title>Storjでディスク貸し出しやってみた</title>
 <meta name="description" content="ブロックチェーンやRailsなど実践の記録">
 <meta name="generator" content="Hugo 0.30.2" />
-<meta property="og:title" content="【出遅れ感】Ethereumのマイニングは稼げるのか？！" />
-<meta property="og:description" content="今更ですがEthereumのホワイトペーパーを読みました。いやぁ、すごい。本当にこれは世界を変える技術だと思います。 そしてEthereumは" />
+<meta property="og:title" content="Storjでディスク貸し出しやってみた" />
+<meta property="og:description" content="ブロックチェーン技術で稼げるのか検証シリーズ第二弾。 第一弾のEthereumマイニングに引き続き、今回はHDDの空き容量を貸し出して収益を得" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://blog.gacktomo.com/about/ethereum-mining-monetize/" />
+<meta property="og:url" content="https://blog.gacktomo.com/2017/11/storj-share-monetize/" />
 
 
 
-<meta property="article:published_time" content="2017-11-01T01:47:38&#43;00:00"/>
+<meta property="article:published_time" content="2017-11-04T15:10:47&#43;00:00"/>
 
-<meta property="article:modified_time" content="2017-11-01T01:47:38&#43;00:00"/>
+<meta property="article:modified_time" content="2017-11-04T15:10:47&#43;00:00"/>
 
 
 
@@ -61,20 +61,34 @@ ga('send', 'pageview');
 <main class="main-content content" role="main" itemprop="mainContentOfPage">
 	<article class="post">
 		<header class="post__header clearfix">
-			<h1 class="post__title">【出遅れ感】Ethereumのマイニングは稼げるのか？！</h1>
+			<h1 class="post__title">Storjでディスク貸し出しやってみた</h1>
 			<p class="post__meta meta">
 				<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
-				<time class="post__meta-date" datetime="2017-11-01T01:47:38">November 01, 2017</time>
+				<time class="post__meta-date" datetime="2017-11-04T15:10:47">November 04, 2017</time>
 			</p>
 		</header>
 		<div class="post__content clearfix">
-			<p><div style="text-align: center;">
-<a href="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQn_bEDgLwi98EATLIIULNVD3NkyiYg1dYT0jr58OfrzhmDUtrWg" class="http-image" target="_blank"><img class="http-image" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQn_bEDgLwi98EATLIIULNVD3NkyiYg1dYT0jr58OfrzhmDUtrWg" alt="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQn_bEDgLwi98EATLIIULNVD3NkyiYg1dYT0jr58OfrzhmDUtrWg"/></a>
- 
-</div>
-今更ですがEthereumのホワイトペーパーを読みました。いやぁ、すごい。本当にこれは世界を変える技術だと思います。
-そしてEthereumはASICみたいな専用ハードでマイニングできなかったり、計算資源弱者にも報酬が行くようなアルゴリズムになっているそうです。これはもしかして自分でもできるかも。。。？？
-ということで、出遅れている感が否めないですがマイニングを始めてみました！果たして稼げるのか。。。？？ </p>
+			<figure class="post__thumbnail">
+				<img src="https://storj.io/img/storj-logo.jpg" alt="Storjでディスク貸し出しやってみた">
+			</figure>
+			<p>ブロックチェーン技術で稼げるのか検証シリーズ第二弾。
+<a href="http://gacktomo.hatenablog.com/entry/ethereum-mining-monetize">第一弾のEthereumマイニング</a>に引き続き、今回はHDDの空き容量を貸し出して収益を得ることができるStorjを使ってみます。</p>
+
+<p><!-- more --></p>
+<h4> 導入</h4>
+<p>Storj.ioからStorj Shareをダウンロードします。Windows、Mac、Linux対応。あとは起動して貸し出す容量と、収入の振込先アドレスを設定するだけ。ひとまず今回は200GB貸し出してみました。</p>
+<p>気をつけないといけないことはStorjトークンが振り込まれるので受け取るウォレットがERC20に準拠したものでないといけません。CoincheckとかZaifのウォレットだと受け取れないので注意しましょう。<a href="https://www.myetherwallet.com/">MyEtherWallet</a>がおすすめです。</p>
+<p> </p>
+<p><iframe class="embed-card embed-webcard" style="display: block; width: 100%; height: 155px; max-width: 500px; margin: 10px 0px;" title="Storj Share - Rent Your Drive" src="https://hatenablog-parts.com/embed?url=https%3A%2F%2Fstorj.io%2Fshare.html" frameborder="0" scrolling="no"></iframe></p>
+<h4>予想収益</h4>
+<p>非公式サイトによる収益計算。8TB貸し出しで月2万超え？！先駆者の記事を見ると多くても月数千円くらいだったのだが。収益は未知数っぽい。</p>
+<p><img class="hatena-fotolife" title="f:id:gacktomo:20171104150636p:plain" src="https://cdn-ak.f.st-hatena.com/images/fotolife/g/gacktomo/20171104/20171104150636.png" alt="f:id:gacktomo:20171104150636p:plain" width="372" /></p>
+<p> </p>
+<h4>結果</h4>
+<p>貸し出し容量がジワジワしか増えないので今後動向があったら追記していきます。</p>
+<p> </p>
+<p>2日目　貸出容量 1.98GB </p>
+<p><img class="hatena-fotolife" title="f:id:gacktomo:20171103003600j:plain" src="https://cdn-ak.f.st-hatena.com/images/fotolife/g/gacktomo/20171103/20171103003600.jpg" alt="f:id:gacktomo:20171103003600j:plain" /></p>
 
 			<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 <ins class="adsbygoogle"
@@ -103,6 +117,14 @@ ga('send', 'pageview');
 	</div>
 </div>
 	
+<nav class="post-nav row clearfix" itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement">
+	<div class="post-nav__item post-nav__item--prev col-1-2">
+		<a class="post-nav__link" href="https://blog.gacktomo.com/2017/11/ethereum-whitepaper-explanation/" rel="prev"><span class="post-nav__caption">«Previous</span><p class="post-nav__post-title">Ethereumホワイトペーパーをざっくり解説</p></a>
+	</div>
+	<div class="post-nav__item post-nav__item--next col-1-2">
+		<a class="post-nav__link" href="https://blog.gacktomo.com/2017/11/nem-harvest-monetize/" rel="next"><span class="post-nav__caption">Next»</span><p class="post-nav__post-title">NEMハーベストやってみた</p></a>
+	</div>
+</nav>
 
 	
 </main>

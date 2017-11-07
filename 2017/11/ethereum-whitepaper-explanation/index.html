@@ -3,19 +3,19 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>【出遅れ感】Ethereumのマイニングは稼げるのか？！</title>
+<title>Ethereumホワイトペーパーをざっくり解説</title>
 <meta name="description" content="ブロックチェーンやRailsなど実践の記録">
 <meta name="generator" content="Hugo 0.30.2" />
-<meta property="og:title" content="【出遅れ感】Ethereumのマイニングは稼げるのか？！" />
-<meta property="og:description" content="今更ですがEthereumのホワイトペーパーを読みました。いやぁ、すごい。本当にこれは世界を変える技術だと思います。 そしてEthereumは" />
+<meta property="og:title" content="Ethereumホワイトペーパーをざっくり解説" />
+<meta property="og:description" content="先日Ethereumのホワイトペーパーを読んだので簡単にスライドにまとめてみました。ブロックチェーンについてなんとく理解している人向けになる" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://blog.gacktomo.com/about/ethereum-mining-monetize/" />
+<meta property="og:url" content="https://blog.gacktomo.com/2017/11/ethereum-whitepaper-explanation/" />
 
 
 
-<meta property="article:published_time" content="2017-11-01T01:47:38&#43;00:00"/>
+<meta property="article:published_time" content="2017-11-04T14:22:13&#43;00:00"/>
 
-<meta property="article:modified_time" content="2017-11-01T01:47:38&#43;00:00"/>
+<meta property="article:modified_time" content="2017-11-04T14:22:13&#43;00:00"/>
 
 
 
@@ -61,20 +61,23 @@ ga('send', 'pageview');
 <main class="main-content content" role="main" itemprop="mainContentOfPage">
 	<article class="post">
 		<header class="post__header clearfix">
-			<h1 class="post__title">【出遅れ感】Ethereumのマイニングは稼げるのか？！</h1>
+			<h1 class="post__title">Ethereumホワイトペーパーをざっくり解説</h1>
 			<p class="post__meta meta">
 				<svg class="icon icon-time" height="14" viewBox="0 0 16 16" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m8-.0000003c-4.4 0-8 3.6-8 8 0 4.4000003 3.6 8.0000003 8 8.0000003 4.4 0 8-3.6 8-8.0000003 0-4.4-3.6-8-8-8zm0 14.4000003c-3.52 0-6.4-2.88-6.4-6.4000003 0-3.52 2.88-6.4 6.4-6.4 3.52 0 6.4 2.88 6.4 6.4 0 3.5200003-2.88 6.4000003-6.4 6.4000003zm.4-10.4000003h-1.2v4.8l4.16 2.5600003.64-1.04-3.6-2.1600003z"/></svg>
-				<time class="post__meta-date" datetime="2017-11-01T01:47:38">November 01, 2017</time>
+				<time class="post__meta-date" datetime="2017-11-04T14:22:13">November 04, 2017</time>
 			</p>
 		</header>
 		<div class="post__content clearfix">
-			<p><div style="text-align: center;">
-<a href="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQn_bEDgLwi98EATLIIULNVD3NkyiYg1dYT0jr58OfrzhmDUtrWg" class="http-image" target="_blank"><img class="http-image" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQn_bEDgLwi98EATLIIULNVD3NkyiYg1dYT0jr58OfrzhmDUtrWg" alt="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQn_bEDgLwi98EATLIIULNVD3NkyiYg1dYT0jr58OfrzhmDUtrWg"/></a>
- 
-</div>
-今更ですがEthereumのホワイトペーパーを読みました。いやぁ、すごい。本当にこれは世界を変える技術だと思います。
-そしてEthereumはASICみたいな専用ハードでマイニングできなかったり、計算資源弱者にも報酬が行くようなアルゴリズムになっているそうです。これはもしかして自分でもできるかも。。。？？
-ということで、出遅れている感が否めないですがマイニングを始めてみました！果たして稼げるのか。。。？？ </p>
+			<figure class="post__thumbnail">
+				<img src="https://cdn-ak.f.st-hatena.com/images/fotolife/g/gacktomo/20171104/20171104141422.png" alt="Ethereumホワイトペーパーをざっくり解説">
+			</figure>
+			<p>先日Ethereumのホワイトペーパーを読んだので簡単にスライドにまとめてみました。ブロックチェーンについてなんとく理解している人向けになるべく噛み砕いていますので興味のある方は是非読んでみてください。</p>
+
+<p><!-- more --></p>
+<p>難しい部分には触れず、Ethereumがどういうものかという表面部分だけを抽出しました。仕組みの部分については恐らく間違いがありますのでご指摘ください。</p>
+<p> </p>
+<p><iframe style="border: 1px solid #CCC; border-width: 1px; margin-bottom: 5px; max-width: 100%;" src="//www.slideshare.net/slideshow/embed_code/key/sB02wizkjnzcTM" width="595" height="485" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" allowfullscreen=""> </iframe> </p>
+<p>スライドでは簡易的な説明のためブロックチェーンの中に状態を持つ形で書いたけど実際はパトリシア木でブロックチェーンの外に状態を持ってるっぽいんだよなあ。そこらへんの詳細がホワイトペーパーに記載されていなかったのでイエローペーパーも読む必要がありそう。ざっくり調べた感じパトリシア木のルートをブロックヘッダーに持っているんだと思う。詳しい方教えてください〜。</p>
 
 			<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 <ins class="adsbygoogle"
@@ -103,6 +106,14 @@ ga('send', 'pageview');
 	</div>
 </div>
 	
+<nav class="post-nav row clearfix" itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement">
+	<div class="post-nav__item post-nav__item--prev col-1-2">
+		<a class="post-nav__link" href="https://blog.gacktomo.com/2017/11/ethereum-mining-monetize/" rel="prev"><span class="post-nav__caption">«Previous</span><p class="post-nav__post-title">【出遅れ感】Ethereumのマイニングは稼げるのか？！</p></a>
+	</div>
+	<div class="post-nav__item post-nav__item--next col-1-2">
+		<a class="post-nav__link" href="https://blog.gacktomo.com/2017/11/storj-share-monetize/" rel="next"><span class="post-nav__caption">Next»</span><p class="post-nav__post-title">Storjでディスク貸し出しやってみた</p></a>
+	</div>
+</nav>
 
 	
 </main>
