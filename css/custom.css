@@ -1,0 +1,11 @@
+.side__link {
+	display: table-cell;
+	vertical-align: middle;
+	padding-left: 20px;
+}
+
+.side__thumbnail{
+	max-width: 90px;
+	display: table-cell;
+  vertical-align: middle;
+}
