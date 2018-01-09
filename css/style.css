@@ -598,14 +598,26 @@ select {
 	border-bottom: 1px dotted #ebebeb;
 }
 
+.side__link {
+	display: table-cell;
+	vertical-align: middle;
+	padding-left: 20px;
+}
+
+.side__thumbnail {
+	max-width: 90px;
+	display: table-cell;
+  vertical-align: middle;
+}
+
 .post__thumbnail {
-	max-width: 1030px;
+	max-width: 80%;
 	margin-bottom: 20px;
 	margin-bottom: 1.25rem;
 }
 
 .post__thumbnail img {
-	width: 100%;
+	width: 80%;
 }
 
 .post__content h1, .post__content h2, .post__content h3, .post__content h4,
